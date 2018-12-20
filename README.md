@@ -12,7 +12,7 @@ DecisionTreeRegressor gives the following Output :
 avg / total       0.91      0.91      0.91       114
 ```
 
-RandomForestClassifier gies : 
+RandomForestClassifier gives : 
 ```python 
 [[74  1]
  [ 2 37]]
