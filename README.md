@@ -39,3 +39,18 @@ XGBoost gives :
 avg / total       0.98      0.98      0.98       114
 ```
 
+
+ANN gives : 
+```python 
+Epoch 512/512
+512/512 [==============================] - 0s 18us/step - loss: 0.0028 - acc: 1.0000
+[[35  0]
+ [ 0 22]]
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00        35
+          1       1.00      1.00      1.00        22
+
+avg / total       1.00      1.00      1.00        57
+
+```
