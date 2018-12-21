@@ -45,8 +45,8 @@ X = df.drop('diagnosis',axis=1)
 y = df['diagnosis']
 
 # to one hot encode y 
-data = y
-values = array(data)
+df = y
+values = array(df)
 # integer encode
 label_encoder = LabelEncoder()
 integer_encoded = label_encoder.fit_transform(values)
