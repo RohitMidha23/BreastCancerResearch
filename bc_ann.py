@@ -9,6 +9,7 @@ from sklearn.metrics import confusion_matrix,classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
+from keras.layers import Flatten
 
 df = pd.read_csv('/Users/rohit/BreastCancer/breast_cancer.csv')
 df = df.drop('Unnamed: 32', axis=1)
@@ -28,11 +29,11 @@ X_test = sc.transform(X_test)
 
 
 model = Sequential()
-model.add(Dense(output_dim=16, init='uniform', activation='relu', input_dim=30))
+model.add(Dense(16, init='uniform', activation='relu', input_dim=30))
 model.add(Dropout(p=0.1))
-model.add(Dense(output_dim=16, init='uniform', activation='relu'))
+model.add(Dense(16, init='uniform', activation='relu'))
 model.add(Dropout(p=0.1))
-model.add(Dense(output_dim=1, init='uniform', activation='sigmoid'))
+model.add(Dense(1, init='uniform', activation='sigmoid'))
 model.compile(optimizer='RMSProp', loss='binary_crossentropy', metrics=['accuracy'])
 model.fit(X_train, y_train, batch_size=100, nb_epoch=512)
 
