@@ -19,6 +19,25 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from keras.layers import Flatten
+import matplotlib.pyplot as plt
+from keras.optimizers import Adam, SGD, RMSprop
+
+def plot_loss_accuracy(history):
+    fig = plt.figure(figsize=(12, 6))
+    ax = fig.add_subplot(1, 2, 1)
+    ax.plot(history.history["loss"],'r-x', label="Train Loss")
+    ax.plot(history.history['val_loss'],'b-x', label="Validation Loss")
+    ax.legend()
+    ax.set_title('binary_crossentropy loss')
+    ax.grid(True)
+
+
+    ax = fig.add_subplot(1, 2, 2)
+    ax.plot(history.history["acc"],'r-x', label="Train Accuracy")
+    ax.plot(history.history["val_acc"],'b-x', label="Validation Accuracy")
+    ax.legend()
+    ax.set_title('accuracy')
+    ax.grid(True); p = ax.get_figure(); p.savefig('annplot.jpg')
 
 dataset= pd.read_csv('/Users/rohit/BreastCancer/breast_cancer.csv',sep= ',')
 del dataset['Unnamed: 32']
@@ -153,9 +172,9 @@ model.add(Dropout(p=0.1))
 model.add(Dense(16, init='uniform', activation='relu'))
 model.add(Dropout(p=0.1))
 model.add(Dense(1, init='uniform', activation='sigmoid'))
-model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=100, nb_epoch=512)
-
+model.compile(optimizer='sgd', loss='binary_crossentropy', metrics=['accuracy'])
+history = model.fit(X_train, y_train, batch_size=100, nb_epoch=512, validation_data = (X_test,y_te))
+plot_loss_accuracy(history)
 
 y_pred = model.predict(X_test)
 y_pred = (y_pred > 0.5)
