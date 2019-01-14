@@ -47,7 +47,9 @@ model.add(Dense(16, init='uniform', activation='relu'))
 model.add(Dropout(p=0.1))
 model.add(Dense(1, init='uniform', activation='sigmoid'))
 model.compile(optimizer='RMSProp', loss='binary_crossentropy', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=100, nb_epoch=52)
+print(model.summary())
+model.fit(X_train, y_train, batch_size=100, nb_epoch=512)
+
 
 y_pred = model.predict(X_test)
 y_pred_proba = model.predict_proba(X_test)
