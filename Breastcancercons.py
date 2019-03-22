@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
@@ -39,7 +39,7 @@ def plot_loss_accuracy(history):
     ax.set_title('accuracy')
     ax.grid(True); p = ax.get_figure(); p.savefig('annplot.jpg')
 
-dataset= pd.read_csv('/Users/rohit/BreastCancer/breast_cancer.csv',sep= ',')
+dataset= pd.read_csv('breast_cancer.csv',sep= ',')
 del dataset['Unnamed: 32']
 del dataset['id']
 
@@ -149,7 +149,7 @@ print("Extra tree gini ",accuracy_score(y_test,y_predetg))
 #svc=SVC(kernel = 'linear', random_state = 0)
 
 
-df = pd.read_csv('/Users/rohit/BreastCancer/breast_cancer.csv')
+df = pd.read_csv('breast_cancer.csv')
 df = df.drop('Unnamed: 32', axis=1)
 
 X = df.iloc[:, 2:].values
